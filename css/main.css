@@ -477,7 +477,7 @@ a:focus {
   margin-left: 20px;
   width: 200px;
   height: 78px;
-  background: url(../images/logo.jpg) no-repeat;
+  background: url(../images/logo.jpg?v1) no-repeat;
   background-size: 100%;
 }
 .navbar-default .navbar-nav > li {
