@@ -374,6 +374,9 @@ a:focus {
   background-color: #f9f9f9;
 }
 
+.lead{
+  padding-bottom: 20px;
+}
 #pricing .plan {
   background: #fff;
   list-style: none;
