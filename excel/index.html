@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js?v10"></script>
+    <!-- <script src="js/jquery.base64.js"></script> -->
+    <script src="js/jquery.table2excel.min.js"></script>
+    
+    <!-- <script src="https://cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.js"></script> -->
+    <script src="js/Bmob-1.7.1.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <input  id="btnExport" onclick="method5('tableExcel')" type="submit" value="导出Excel">
+
+    <table id="tableExcel" border="1" cellpadding="0" cellspacing="0" width="200">
+        <thead>
+            <tr style="background-color: gray;">
+                <th>班级</th>
+                <th>座位</th>
+                <th>姓名</th>
+            </tr>
+        </thead>
+        <tbody class="y1">
+
+
+        </tbody>
+
+
+
+</body>
+<script type="text/javascript">
+    Bmob.initialize("2195da7896922f5b1747e00080ebfd2a", "9327f775e53bda1c5bb975d1dbe4fee3");
+    const query = Bmob.Query("zuowei");
+    query.limit(1000);
+    var text = '';
+    query.find().then(res => {
+        console.log(res, "yiweu");
+        for (var i = 0; i < res.length; i++) {
+            if (res[i].weizhi) {
+                text += '<tr><td>' + res[i].classname + '</td><td>' + res[i].weizhi + '</td><td>' + res[i]
+                    .name + '</td></tr>'
+            }
+        }
+        $(".y1").append(text);
+
+       
+        // $("#btnExport1").on("click", export_excel)
+
+    })
+    $(document).ready(function () {
+      $("#btnExport").click(function () {
+        $("#tableExcel").table2excel({
+          exclude : ".noExl", //过滤位置的 css 类名
+          filename : "座位表" + new Date().getTime() + ".xls", //文件名称
+          name: "Excel Document Name.xlsx",
+          exclude_img: true,
+          exclude_links: true,
+          exclude_inputs: true
+        });
+      });
+    });
+</script> 
+
+</html>
